@@ -41,10 +41,6 @@ import img16 from "./img16.jpg";
 import song1 from "./song1.mp3";
 import song2 from "./song2.mp3";
 import song3 from "./song3.mp3";
-import img17 from "./img17.png";
-import img18 from "./img18.png";
-import img19 from "./img19.png";
-import img20 from "./img20.png";
 
 export const assets = {
   bell_icon,
@@ -76,31 +72,45 @@ export const assets = {
 export const albumsData = [
   {
     id: 0,
-    name: "Open Letter",
-    image: img17,
-    desc: "2023 Talha Anjum",
-    bgColor: "#A40D33",
+    name: "Top 50 Global",
+    image: img8,
+    desc: "Your weekly update of the most played tracks",
+    bgColor: "#2a4365",
   },
   {
     id: 1,
-    name: "Still Rollin",
-    image: img18,
-    desc: "Shubh",
-    bgColor: "#2a4365",
+    name: "Top 50 India",
+    image: img9,
+    desc: "Your weekly update of the most played tracks",
+    bgColor: "#22543d",
   },
   {
     id: 2,
-    name: "Maybe, It's love",
-    image: img19,
-    desc: "Hassan Raheem",
-    bgColor: "#2a4365",
+    name: "Trending India",
+    image: img10,
+    desc: "Your weekly update of the most played tracks",
+    bgColor: "#742a2a",
   },
   {
     id: 3,
-    name: "Making Memories",
-    image: img20,
-    desc: "Karan Aujla, Ikky",
-    bgColor: "#2a4365",
+    name: "Trending Global",
+    image: img16,
+    desc: "Your weekly update of the most played tracks",
+    bgColor: "#44337a",
+  },
+  {
+    id: 4,
+    name: "Mega Hits",
+    image: img11,
+    desc: "Your weekly update of the most played tracks",
+    bgColor: "#234e52",
+  },
+  {
+    id: 5,
+    name: "Happy Favorites",
+    image: img15,
+    desc: "Your weekly update of the most played tracks",
+    bgColor: "#744210",
   },
 ];
 
