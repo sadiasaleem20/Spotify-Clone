@@ -15,7 +15,9 @@ const addSong = async (req, res) => {
       resource_type: "image",
     });
 
-    console.log(name, desc, album, audioUpload, imageUpload);
+    const duration = `${Math.floor(audioUpload.duration / 60)}:${Math.floor(
+      audioUpload.duration % 60
+    )}`;
 
     const newSong = new songModel({
       name,
@@ -23,12 +25,12 @@ const addSong = async (req, res) => {
       album,
       image: imageUpload.secure_url,
       file: audioUpload.secure_url,
-      duration: audioUpload.duration.toString(),
+      duration,
     });
 
     await newSong.save();
 
-    res.status(201).json({ message: "Song added successfully", song: newSong });
+    res.status(201).json({ success: true, message: "Song Added" });
   } catch (error) {
     console.error("Error adding song:", error);
     res.status(500).json({ message: "Server error", error: error.message });
@@ -37,12 +39,29 @@ const addSong = async (req, res) => {
 
 const listSong = async (req, res) => {
   try {
-    const songs = await songModel.find();
-    res.status(200).json(songs);
+    const allSongs = await songModel.find({});
+    res.status(200).json({ success: true, songs: allSongs });
   } catch (error) {
     console.error("Error listing songs:", error);
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
 
-export { addSong, listSong };
+const removeSong = async (req, res) => {
+  try {
+    const song = await songModel.findByIdAndDelete(req.params.id);
+
+    if (!song) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Song not found" });
+    }
+
+    res.status(200).json({ success: true, message: "Song removed" });
+  } catch (error) {
+    console.error("Error removing song:", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
+export { addSong, listSong, removeSong };
