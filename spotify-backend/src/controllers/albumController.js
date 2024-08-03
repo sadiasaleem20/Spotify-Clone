@@ -24,7 +24,30 @@ const addAlbum = async (req, res) => {
     res.json({ success: false });
   }
 };
-const listAlbum = async (req, res) => {};
-const removeAlbum = async (req, res) => {};
+const listAlbum = async (req, res) => {
+  try {
+    const allAlbums = await albumModel.find({});
+    res.json({ success: true, albums: allAlbums });
+  } catch (error) {
+    res.json({ success: false });
+  }
+};
+
+const removeAlbum = async (req, res) => {
+  try {
+    const album = await albumModel.findByIdAndDelete(req.params.id);
+
+    if (!album) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Song not found" });
+    }
+
+    res.status(200).json({ success: true, message: "Song removed" });
+  } catch (error) {
+    console.error("Error removing song:", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
 
 export { addAlbum, listAlbum, removeAlbum };
